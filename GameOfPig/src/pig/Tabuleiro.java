@@ -143,13 +143,16 @@ public class Tabuleiro {
 				int pontosLance = jogadorRemoto.getPontuacao() + pontuacaoLance;
 				jogadorRemoto.setPontuacao(pontosLance);
 			}
+			this.pontuacaoLance = pontuacaoDaVez;
 			alternarVez(verificaVencedor(),doServidor);			
 			break;
 
 		case Situacao.JOGADA:   // 1 - atualiza pontuacao da vez
+			this.pontuacaoLance = pontuacaoDaVez;
 			break;
 
 		case Situacao.PERDEU:   // 2 - zera pontuacao da vez
+			this.pontuacaoLance = pontuacaoDaVez;
 			alternarVez(verificaVencedor(),doServidor);
 			break;
 
@@ -160,14 +163,13 @@ public class Tabuleiro {
 			} else {
 				jogadorRemoto.setPontuacao(0);
 			}
+			this.pontuacaoLance = pontuacaoDaVez;
 			alternarVez(verificaVencedor(),doServidor);
 			break;
 
 		default:
 			break;
 		}
-		
-		this.pontuacaoLance = pontuacaoDaVez;
 				
 		return situacao;		
 	}

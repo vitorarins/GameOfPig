@@ -379,8 +379,10 @@ public class AtorJogador extends JFrame {
 			boolean localVenceu = tab.jogadorLocal.isVencedor(); 
 			if (localVenceu){
 				MensagemUtil.mostrar("Parabéns! Você venceu a partida!", this);
+				terminarPartidaEmAndamento();
 			} else {
 				MensagemUtil.mostrar("Infelizmente você perdeu a partida.", this);
+				terminarPartidaEmAndamento();
 			}
 			this.limparTela();
 		} else {
