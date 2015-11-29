@@ -1,5 +1,8 @@
 package pig;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 import br.ufsc.inf.leobr.cliente.OuvidorProxy;
 import br.ufsc.inf.leobr.cliente.Proxy;
@@ -14,6 +17,9 @@ public class AtorNetGames implements OuvidorProxy {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String BUNDLE_NAME = "pig.messages"; //$NON-NLS-1$
+	protected static ResourceBundle resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+	
 	protected boolean ehMinhaVez = false;
 	
 	protected AtorJogador atorJogador;
@@ -43,33 +49,33 @@ public class AtorNetGames implements OuvidorProxy {
 
 	@Override
 	public void tratarConexaoPerdida() {
-		
-		MensagemUtil.mostrar("A conexão com o servidor foi perdida.", atorJogador);					
+		resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+		MensagemUtil.mostrar(resource.getString("AtorNetGames.0"), atorJogador);					 //$NON-NLS-1$
 	}
 
 	@Override
 	public void tratarPartidaNaoIniciada(String message) {
-		
-		MensagemUtil.mostrar("A partida não pode ser iniciada devido ao seguinte erro: " + message, atorJogador);					
+		resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+		MensagemUtil.mostrar(resource.getString("AtorNetGames.1") + message, atorJogador);					 //$NON-NLS-1$
 	}
 
 	@Override
 	public void receberMensagem(String msg) {
-		
-		MensagemUtil.mostrar("Mensagem recebida do servidor:" + msg, atorJogador);					
+		resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+		MensagemUtil.mostrar(resource.getString("AtorNetGames.2") + msg, atorJogador);					 //$NON-NLS-1$
 	}
 
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
-		if (posicao == 1) {
-			MensagemUtil.mostrar("Partida Iniciada, você começa jogando!", atorJogador);
-			ehMinhaVez = true;
-			atorJogador.iniciarPartidaRede(ehMinhaVez);
+		resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+		if (posicao == 1) {			
+			MensagemUtil.mostrar(resource.getString("AtorNetGames.3"), atorJogador); //$NON-NLS-1$
+			ehMinhaVez = true;			
 		} else {
-			MensagemUtil.mostrar("Partida Iniciada, aguarde uma jogada", atorJogador);			
-			ehMinhaVez = false;
-			atorJogador.iniciarPartidaRede(ehMinhaVez);
+			MensagemUtil.mostrar(resource.getString("AtorNetGames.4"), atorJogador);			 //$NON-NLS-1$
+			ehMinhaVez = false;			
 		}
+		atorJogador.iniciarPartidaRede(ehMinhaVez);
 	}
 	
 	public void conectar() {
@@ -93,7 +99,8 @@ public class AtorNetGames implements OuvidorProxy {
 			Proxy.getInstance().desconectar();
 		} catch (NaoConectadoException e) {
 			e.printStackTrace();
-			MensagemUtil.mostrarErro("Erro: " + e.getMessage(), atorJogador);
+			resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+			MensagemUtil.mostrarErro(resource.getString("AtorNetGames.5") + e.getMessage(), atorJogador); //$NON-NLS-1$
 		}
 	}
 
@@ -134,10 +141,12 @@ public class AtorNetGames implements OuvidorProxy {
 			MensagemUtil.mostrarErro(e.getMessage(), atorJogador);
 		} catch (NaoPossivelConectarException e) {
 			e.printStackTrace();
-			MensagemUtil.mostrarErro("Erro: " + e.getMessage(), atorJogador);
+			resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+			MensagemUtil.mostrarErro(resource.getString("AtorNetGames.6") + e.getMessage(), atorJogador); //$NON-NLS-1$
 		} catch (ArquivoMultiplayerException e) {
 			e.printStackTrace();
-			MensagemUtil.mostrarErro("Erro: " + e.getMessage(), atorJogador);
+			resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+			MensagemUtil.mostrarErro(resource.getString("AtorNetGames.7") + e.getMessage(), atorJogador); //$NON-NLS-1$
 		}
 	}
 

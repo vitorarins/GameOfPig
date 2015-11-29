@@ -37,12 +37,12 @@ public class ComoJogarDialog extends JDialog {
 		txtrLalala.setFocusable(false);
 		txtrLalala.setLineWrap(true);
 		txtrLalala.setWrapStyleWord(true);
-		txtrLalala.setText("1. Para jogar é preciso estar conectado ao Servidor: \n    - Vá no menu \"Partida\" -> \"Conectar\"\n    - Digite seu nome e o servidor depois clique \"OK\"\n\n2. Para iniciar uma partida:\n    - Vá no menu \"Partida\" -> \"Iniciar Partida\"\n\n3. O jogo:\n    - Os jogadores vão jogar os dados até que alguém chegue na pontuação máxima.\n    - Se um dos dados for \"1\", o jogador perde os pontos da jogada e passa a vez.\n    - Se ambos os dados forem \"1\", o jogador perde todos os pontos e passa a vez.\n    - Há duas opções ao jogador, \"Jogar os dados\" ou \"Passar a vez\".\n\n4. Caso queira se conectar a outro servidor:\n    - Vá no menu \"Partida\" -> \"Desconectar\"\n    - Depois vá em \"Partida\" - > \"Conectar\"\n    - Digite seu nome e o novo endereço de servidor.");
+		txtrLalala.setText(Messages.getString("ComoJogarDialog.0")); //$NON-NLS-1$
 		txtrLalala.setBounds(12, 60, 542, 270);
 		contentPanel.add(txtrLalala);
 		{
-			JLabel lblGameOfPig = new JLabel("Game of Pig");
-			lblGameOfPig.setFont(new Font("Dialog", Font.BOLD, 20));
+			JLabel lblGameOfPig = new JLabel(Messages.getString("ComoJogarDialog.1")); //$NON-NLS-1$
+			lblGameOfPig.setFont(new Font("Dialog", Font.BOLD, 20)); //$NON-NLS-1$
 			lblGameOfPig.setHorizontalAlignment(SwingConstants.CENTER);
 			lblGameOfPig.setBounds(193, 12, 159, 20);
 			contentPanel.add(lblGameOfPig);
@@ -52,20 +52,20 @@ public class ComoJogarDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton(Messages.getString("ComoJogarDialog.3")); //$NON-NLS-1$
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
 					}
 				});
-				okButton.setActionCommand("OK");
+				okButton.setActionCommand(Messages.getString("ComoJogarDialog.4")); //$NON-NLS-1$
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
 		
 		setLocationRelativeTo(null);
-		setTitle("Sobre");		
+		setTitle(Messages.getString("ComoJogarDialog.5"));		 //$NON-NLS-1$
 		setPreferredSize(new Dimension(573, 394));
 	}
 }

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,45 +22,52 @@ import javax.swing.border.EmptyBorder;
 public class AtorJogador extends JFrame {
 
 	private static final long serialVersionUID = -8232011527107568444L;
-	
-	protected static final String[] MENSAGENS = {"Passou a vez!","Boa jogada!","Perdeu os pontos!","Perdeu tudo!","Começou!"};
+		
+	private static final String BUNDLE_NAME = "pig.messages"; //$NON-NLS-1$
+	protected static ResourceBundle resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
 	private JPanel contentPane;
 	private Tabuleiro tab;
 	private AtorNetGames atorNetGames;
 
-	protected ImageIcon dado1 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_1.png"));
-	protected ImageIcon dado2 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_2.png"));
-	protected ImageIcon dado3 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_3.png"));
-	protected ImageIcon dado4 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_4.png"));
-	protected ImageIcon dado5 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_5.png"));
-	protected ImageIcon dado6 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_6.png"));
+	protected ImageIcon dado1 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_1.png")); //$NON-NLS-1$
+	protected ImageIcon dado2 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_2.png")); //$NON-NLS-1$
+	protected ImageIcon dado3 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_3.png")); //$NON-NLS-1$
+	protected ImageIcon dado4 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_4.png")); //$NON-NLS-1$
+	protected ImageIcon dado5 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_5.png")); //$NON-NLS-1$
+	protected ImageIcon dado6 = new ImageIcon(AtorJogador.class.getResource("/assets/dado_6.png")); //$NON-NLS-1$
 	protected ImageIcon[] dados = {null,dado1,dado2,dado3,dado4,dado5,dado6};
 	protected JMenuBar menuBar = new JMenuBar();
-	protected JMenu mnPartida = new JMenu("Partida");
-	protected JMenuItem mntmConectar = new JMenuItem("Conectar");
-	protected JMenuItem mntmIniciarPartida = new JMenuItem("Iniciar Partida");
-	protected JMenuItem mntmDesconectar = new JMenuItem("Desconectar");
+	protected JMenu mnPartida = new JMenu(resource.getString("AtorJogador.11")); //$NON-NLS-1$
+	protected JMenuItem mntmConectar = new JMenuItem(resource.getString("AtorJogador.12")); //$NON-NLS-1$
+	protected JMenuItem mntmIniciarPartida = new JMenuItem(resource.getString("AtorJogador.13")); //$NON-NLS-1$
+	protected JMenuItem mntmDesconectar = new JMenuItem(resource.getString("AtorJogador.14")); //$NON-NLS-1$
+	protected JMenu mnLingua = new JMenu(resource.getString("AtorJogador.50"));
+	protected JMenuItem mntmPortugues= new JMenuItem("Português");
+	protected JMenuItem mntmEnglish = new JMenuItem("English");
+	protected JMenu mnSobre = new JMenu(resource.getString("AtorJogador.26")); //$NON-NLS-1$
+	protected JMenuItem mntmSobre = new JMenuItem(resource.getString("AtorJogador.27")); //$NON-NLS-1$
+	protected JMenuItem mntmAjuda = new JMenuItem(resource.getString("AtorJogador.28")); //$NON-NLS-1$
 	protected JSeparator separator = new JSeparator();
 	protected JSeparator separator_1 = new JSeparator();
 	protected JLabel lblJogador1 = new JLabel();
 	protected JLabel lblJogador2 = new JLabel();
 	protected JLabel lblDado1 = new JLabel();
 	protected JLabel lblDado2 = new JLabel();
-	protected JButton btnJogarDado1 = new JButton("Jogar dado");
-	protected JButton btnJogarDado2 = new JButton("Jogar dado");
-	protected JButton btnPassarAVez1 = new JButton("Passar a vez");
-	protected JButton btnPassarAVez2 = new JButton("Passar a vez");
+	protected JButton btnJogarDado1 = new JButton(resource.getString("AtorJogador.15")); //$NON-NLS-1$
+	protected JButton btnJogarDado2 = new JButton(resource.getString("AtorJogador.5")); //$NON-NLS-1$
+	protected JButton btnPassarAVez1 = new JButton(resource.getString("AtorJogador.17")); //$NON-NLS-1$
+	protected JButton btnPassarAVez2 = new JButton(resource.getString("AtorJogador.18")); //$NON-NLS-1$
 	protected JLabel lblPointNumTot1 = new JLabel();
-	protected JLabel lblPointTot1 = new JLabel("Pontuação total");
+	protected JLabel lblPointTot1 = new JLabel(resource.getString("AtorJogador.19")); //$NON-NLS-1$
 	protected JLabel lblPointNumVez1 = new JLabel();
-	protected JLabel lblPointVez1 = new JLabel("Pontuação da vez");
-	protected JLabel lblPig1 = new JLabel(new ImageIcon(AtorJogador.class.getResource("/assets/Porco.png")));
+	protected JLabel lblPointVez1 = new JLabel(resource.getString("AtorJogador.20")); //$NON-NLS-1$
+	protected JLabel lblPig1 = new JLabel(new ImageIcon(AtorJogador.class.getResource("/assets/Porco.png"))); //$NON-NLS-1$
 	protected JLabel lblPointNumTot2 = new JLabel();
-	protected JLabel lblPointTot2 = new JLabel("Pontuação total");
+	protected JLabel lblPointTot2 = new JLabel(resource.getString("AtorJogador.22")); //$NON-NLS-1$
 	protected JLabel lblPointNumVez2 = new JLabel();
-	protected JLabel lblPointVez2 = new JLabel("Pontuação da vez");
-	protected JLabel label = new JLabel(new ImageIcon(AtorJogador.class.getResource("/assets/PorcoAzul.png")));
-	protected JLabel lblJogador = new JLabel("Jogador:");
+	protected JLabel lblPointVez2 = new JLabel(resource.getString("AtorJogador.23")); //$NON-NLS-1$
+	protected JLabel label = new JLabel(new ImageIcon(AtorJogador.class.getResource("/assets/PorcoAzul.png"))); //$NON-NLS-1$
+	protected JLabel lblJogador = new JLabel(resource.getString("AtorJogador.25")); //$NON-NLS-1$
 	protected JLabel lblNmJogadorVez = new JLabel();
 	protected JLabel lblInformacao = new JLabel();
 
@@ -98,12 +107,28 @@ public class AtorJogador extends JFrame {
 				atorNetGames.desconectar();
 			}
 		});
-		mnPartida.add(mntmDesconectar);
+		mnPartida.add(mntmDesconectar);			
+				
+		mntmEnglish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(Locale.US);
+				changeLocale();
+			}
+		});
+		mnLingua.add(mntmEnglish);
+				
+		mntmPortugues.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				Locale.setDefault(new Locale("pt_BR"));
+				changeLocale();
+			}
+		});
+		mnLingua.add(mntmPortugues);
 		
-		JMenu mnSobre = new JMenu("Ajuda");
+		menuBar.add(mnLingua);
+				
 		menuBar.add(mnSobre);
-		
-		JMenuItem mntmSobre = new JMenuItem("Sobre");
+				
 		mntmSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dialogSobre = new SobreDialog();
@@ -113,8 +138,7 @@ public class AtorJogador extends JFrame {
 			}
 		});
 		mnSobre.add(mntmSobre);
-		
-		JMenuItem mntmAjuda = new JMenuItem("Como jogar");
+				
 		mntmAjuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dialogComo = new ComoJogarDialog();
@@ -138,11 +162,11 @@ public class AtorJogador extends JFrame {
 		separator_1.setBounds(600, 12, 2, 561);
 		contentPane.add(separator_1);
 		
-		lblJogador1.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblJogador1.setFont(new Font("Dialog", Font.BOLD, 18)); //$NON-NLS-1$
 		lblJogador1.setBounds(58, 17, 82, 32);
 		contentPane.add(lblJogador1);
 		
-		lblJogador2.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblJogador2.setFont(new Font("Dialog", Font.BOLD, 18)); //$NON-NLS-1$
 		lblJogador2.setBounds(644, 27, 98, 22);
 		contentPane.add(lblJogador2);
 		
@@ -151,51 +175,51 @@ public class AtorJogador extends JFrame {
 		
 		lblDado2.setBounds(418, 148, 144, 145);
 		contentPane.add(lblDado2);
-		btnJogarDado1.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnJogarDado1.setFont(new Font("Dialog", Font.BOLD, 20)); //$NON-NLS-1$
 		
 		btnJogarDado1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tab.jogadorLocal.getTipo() == TipoPorco.VERDE) {
 					procederLance(true);
 				} else {
-					MensagemUtil.mostrarErro("Você só pode utilizar os seus botões!", null);
+					MensagemUtil.mostrarErro(resource.getString("AtorJogador.32"), null); //$NON-NLS-1$
 				}
 			}
 		});
 		btnJogarDado1.setBounds(12, 70, 176, 48);
 		contentPane.add(btnJogarDado1);
-		btnJogarDado2.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnJogarDado2.setFont(new Font("Dialog", Font.BOLD, 20)); //$NON-NLS-1$
 		btnJogarDado2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tab.jogadorLocal.getTipo() == TipoPorco.AZUL) {
 					procederLance(true);
 				} else {
-					MensagemUtil.mostrarErro("Você só pode utilizar os seus botões!", null);
+					MensagemUtil.mostrarErro(resource.getString("AtorJogador.34"), null); //$NON-NLS-1$
 				}
 			}
 		});
 		btnJogarDado2.setBounds(610, 70, 176, 48);
 		contentPane.add(btnJogarDado2);
-		btnPassarAVez1.setFont(new Font("Dialog", Font.BOLD, 19));
+		btnPassarAVez1.setFont(new Font("Dialog", Font.BOLD, 19)); //$NON-NLS-1$
 		btnPassarAVez1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tab.jogadorLocal.getTipo() == TipoPorco.VERDE) {
 					procederLance(false);
 				} else {
-					MensagemUtil.mostrarErro("Você só pode utilizar os seus botões!", null);
+					MensagemUtil.mostrarErro(resource.getString("AtorJogador.36"), null); //$NON-NLS-1$
 				}
 			}
 		});
 		
 		btnPassarAVez1.setBounds(12, 141, 176, 48);
 		contentPane.add(btnPassarAVez1);
-		btnPassarAVez2.setFont(new Font("Dialog", Font.BOLD, 19));
+		btnPassarAVez2.setFont(new Font("Dialog", Font.BOLD, 19)); //$NON-NLS-1$
 		btnPassarAVez2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tab.jogadorLocal.getTipo() == TipoPorco.AZUL) {
 					procederLance(false);
 				} else {
-					MensagemUtil.mostrarErro("Você só pode utilizar os seus botões!", null);
+					MensagemUtil.mostrarErro(resource.getString("AtorJogador.38"), null); //$NON-NLS-1$
 				}
 			}
 		});
@@ -204,7 +228,7 @@ public class AtorJogador extends JFrame {
 		contentPane.add(btnPassarAVez2);
 		
 		lblPointNumTot1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointNumTot1.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblPointNumTot1.setFont(new Font("Dialog", Font.BOLD, 30)); //$NON-NLS-1$
 		lblPointNumTot1.setBounds(66, 201, 60, 48);
 		contentPane.add(lblPointNumTot1);
 		
@@ -212,7 +236,7 @@ public class AtorJogador extends JFrame {
 		contentPane.add(lblPointTot1);
 		
 		lblPointNumVez1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointNumVez1.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblPointNumVez1.setFont(new Font("Dialog", Font.BOLD, 30)); //$NON-NLS-1$
 		lblPointNumVez1.setBounds(66, 261, 60, 48);
 		contentPane.add(lblPointNumVez1);
 		
@@ -223,7 +247,7 @@ public class AtorJogador extends JFrame {
 		lblPig1.setBounds(12,321,170,236);
 		contentPane.add(lblPig1);
 		lblPointNumTot2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointNumTot2.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblPointNumTot2.setFont(new Font("Dialog", Font.BOLD, 30)); //$NON-NLS-1$
 		lblPointNumTot2.setBounds(659, 201, 60, 48);
 		contentPane.add(lblPointNumTot2);
 		
@@ -231,7 +255,7 @@ public class AtorJogador extends JFrame {
 		contentPane.add(lblPointTot2);
 		
 		lblPointNumVez2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointNumVez2.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblPointNumVez2.setFont(new Font("Dialog", Font.BOLD, 30)); //$NON-NLS-1$
 		lblPointNumVez2.setBounds(659, 261, 60, 48);
 		contentPane.add(lblPointNumVez2);
 		
@@ -250,9 +274,30 @@ public class AtorJogador extends JFrame {
 		
 		lblInformacao.setForeground(new Color(178, 34, 34));
 		lblInformacao.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInformacao.setFont(new Font("Dialog", Font.BOLD, 29));
+		lblInformacao.setFont(new Font("Dialog", Font.BOLD, 29)); //$NON-NLS-1$
 		lblInformacao.setBounds(255, 87, 307, 31);
 		contentPane.add(lblInformacao);
+	}
+	
+	protected void changeLocale() {
+		resource = ResourceBundle.getBundle(BUNDLE_NAME,Locale.getDefault());
+		mnPartida.setText(resource.getString("AtorJogador.11")); //$NON-NLS-1$
+		mntmConectar.setText(resource.getString("AtorJogador.12")); //$NON-NLS-1$
+		mntmIniciarPartida.setText(resource.getString("AtorJogador.13")); //$NON-NLS-1$
+		mntmDesconectar.setText(resource.getString("AtorJogador.14")); //$NON-NLS-1$
+		mnLingua.setText(resource.getString("AtorJogador.50"));
+		mnSobre.setText(resource.getString("AtorJogador.26")); //$NON-NLS-1$
+		mntmSobre.setText(resource.getString("AtorJogador.27")); //$NON-NLS-1$
+		mntmAjuda.setText(resource.getString("AtorJogador.28")); //$NON-NLS-1$
+		btnJogarDado1.setText(resource.getString("AtorJogador.15")); //$NON-NLS-1$
+		btnJogarDado2.setText(resource.getString("AtorJogador.5")); //$NON-NLS-1$
+		btnPassarAVez1.setText(resource.getString("AtorJogador.17")); //$NON-NLS-1$
+		btnPassarAVez2.setText(resource.getString("AtorJogador.18")); //$NON-NLS-1$
+		lblPointTot1.setText(resource.getString("AtorJogador.19")); //$NON-NLS-1$
+		lblPointVez1.setText(resource.getString("AtorJogador.20")); //$NON-NLS-1$
+		lblPointTot2.setText(resource.getString("AtorJogador.22")); //$NON-NLS-1$
+		lblPointVez2.setText(resource.getString("AtorJogador.23")); //$NON-NLS-1$
+		lblJogador.setText(resource.getString("AtorJogador.25")); //$NON-NLS-1$
 	}
 	
 	protected void procederLance(boolean realizarJogada) {
@@ -294,9 +339,9 @@ public class AtorJogador extends JFrame {
 			
 			boolean localVenceu = tab.jogadorLocal.isVencedor(); 
 			if (localVenceu){
-				MensagemUtil.mostrar("Parabéns! Você venceu a partida!",this);
+				MensagemUtil.mostrar(resource.getString("AtorJogador.44"),this); //$NON-NLS-1$
 			} else {
-				MensagemUtil.mostrar("Infelizmente você perdeu a partida.",this);
+				MensagemUtil.mostrar(resource.getString("AtorJogador.45"),this); //$NON-NLS-1$
 			}
 			this.limparTela();
 		} else {
@@ -342,6 +387,7 @@ public class AtorJogador extends JFrame {
 		lblDado1.setIcon(dados[tab.dado1.getValor()]);
 		lblDado2.setIcon(dados[tab.dado2.getValor()]);
 		
+		String[] MENSAGENS = {resource.getString("AtorJogador.0"),resource.getString("AtorJogador.1"),resource.getString("AtorJogador.2"),resource.getString("AtorJogador.3"),resource.getString("AtorJogador.4")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		lblInformacao.setText(MENSAGENS[numMensagem]);
 		
 		lblNmJogadorVez.setText(daVez.getNome());
@@ -351,14 +397,14 @@ public class AtorJogador extends JFrame {
 			btnPassarAVez1.setEnabled(true);
 			btnPassarAVez2.setEnabled(false);
 			lblPointNumVez1.setText(String.valueOf(tab.getPontuacaoLance()));
-			lblPointNumVez2.setText("0");
+			lblPointNumVez2.setText("0"); //$NON-NLS-1$
 		} else {                                // porco Azul
 			btnJogarDado1.setEnabled(false);
 			btnJogarDado2.setEnabled(true);
 			btnPassarAVez1.setEnabled(false);
 			btnPassarAVez2.setEnabled(true);
 			lblPointNumVez2.setText(String.valueOf(tab.getPontuacaoLance()));
-			lblPointNumVez1.setText("0");
+			lblPointNumVez1.setText("0"); //$NON-NLS-1$
 		}
 		
 		if (tab.getJogadorLocal().getTipo() == TipoPorco.VERDE) {
@@ -378,10 +424,10 @@ public class AtorJogador extends JFrame {
 		if(vencedor){
 			boolean localVenceu = tab.jogadorLocal.isVencedor(); 
 			if (localVenceu){
-				MensagemUtil.mostrar("Parabéns! Você venceu a partida!", this);
+				MensagemUtil.mostrar(resource.getString("AtorJogador.48"), this); //$NON-NLS-1$
 				terminarPartidaEmAndamento();
 			} else {
-				MensagemUtil.mostrar("Infelizmente você perdeu a partida.", this);
+				MensagemUtil.mostrar(resource.getString("AtorJogador.49"), this); //$NON-NLS-1$
 				terminarPartidaEmAndamento();
 			}
 			this.limparTela();
@@ -392,16 +438,16 @@ public class AtorJogador extends JFrame {
 
 	private void limparTela() {
 		
-		lblPointNumTot1.setText("");
-		lblPointNumTot2.setText("");
-		lblPointNumVez2.setText("");
-		lblPointNumVez1.setText("");
-		lblJogador1.setText("");
-		lblJogador2.setText("");
-		lblNmJogadorVez.setText("");
+		lblPointNumTot1.setText(""); //$NON-NLS-1$
+		lblPointNumTot2.setText(""); //$NON-NLS-1$
+		lblPointNumVez2.setText(""); //$NON-NLS-1$
+		lblPointNumVez1.setText(""); //$NON-NLS-1$
+		lblJogador1.setText(""); //$NON-NLS-1$
+		lblJogador2.setText(""); //$NON-NLS-1$
+		lblNmJogadorVez.setText(""); //$NON-NLS-1$
 		lblDado1.setIcon(null);
 		lblDado2.setIcon(null);
-		lblInformacao.setText("");
+		lblInformacao.setText(""); //$NON-NLS-1$
 	}
 	
 	public void terminarPartidaEmAndamento() {

@@ -21,14 +21,14 @@ public class InterfaceRede implements ActionListener {
 			camposViewPanel = new JPanel(),
 			botoesViewPanel = new JPanel();
 
-	private JButton contectarButton = new JButton("Conectar"),
-			cancelarButton = new JButton("Cancelar");
+	private JButton contectarButton = new JButton(Messages.getString("InterfaceRede.0")), //$NON-NLS-1$
+			cancelarButton = new JButton(Messages.getString("InterfaceRede.1")); //$NON-NLS-1$
 
 	private JTextField nickField = new JTextField(15),
 			ipServidorField = new JTextField(15);
 
-	private JLabel nickLabel = new JLabel("Nick"),
-			ipServidorLabel = new JLabel("Ip do servidor:");
+	private JLabel nickLabel = new JLabel(Messages.getString("InterfaceRede.2")), //$NON-NLS-1$
+			ipServidorLabel = new JLabel(Messages.getString("InterfaceRede.3")); //$NON-NLS-1$
 
 	// private ProxyImpl clienteJogador;
 
@@ -36,7 +36,7 @@ public class InterfaceRede implements ActionListener {
 
 	public InterfaceRede(AtorNetGames jogo) {
 		this.jogo = jogo;
-		this.ipServidorField.setText("venus.inf.ufsc.br");
+		this.ipServidorField.setText("venus.inf.ufsc.br"); //$NON-NLS-1$
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class InterfaceRede implements ActionListener {
 
 		JFrame.setDefaultLookAndFeelDecorated(true);
 
-		viewFrame = new JFrame("Conectar");
+		viewFrame = new JFrame(Messages.getString("InterfaceRede.5")); //$NON-NLS-1$
 		viewFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		this.createPanel();
@@ -121,9 +121,9 @@ public class InterfaceRede implements ActionListener {
 		String ipServidor = ipServidorField.getText();
 
 		// valida��es
-		if (nome.equals("")) {
+		if (nome.equals("")) { //$NON-NLS-1$
 			JOptionPane.showMessageDialog(this.viewFrame,
-					"Você deve escolher um nome de usuário", "Erro",
+					Messages.getString("InterfaceRede.7"), Messages.getString("InterfaceRede.8"), //$NON-NLS-1$ //$NON-NLS-2$
 					JOptionPane.ERROR_MESSAGE, null);
 
 			return;
